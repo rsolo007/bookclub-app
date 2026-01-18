@@ -1,0 +1,97 @@
+:root {
+  --bg: #f2eadf;
+  --text: #2b2b2b;
+  --card: #fffdf8;
+  --border: #d6cfc4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --text: #eaeaea;
+    --card: #1c1c1c;
+    --border: #3a3a3a;
+  }
+}
+
+
+
+body {
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Page title */
+#MainTitle {
+  font-size: 60px;
+  padding: 20px;
+}
+
+.nextMemberInfo {
+  font-size: 12px;
+  text-align: left;
+}
+
+/* Book image container */
+.bookImage {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* The actual image */
+.bookImage img {
+  width: min(260px, 80vw);
+  height: auto;
+}
+
+.book-info {
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* Checkpoint row */
+.checkpointInfo {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 80px;
+  font-size: 20px;
+}
+
+/* Created from the JS file for each row member in the member status section */
+.memberStatusRow {
+  text-align: left
+}
+
+#memberStatusTable th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+#memberStatusTable th,
+#memberStatusTable td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: center;
+}
+
+
+#memberStatusTable select {
+  padding: 4px 6px;
+  font-size: 14px;
+}
+
+#memberStatusTable {
+  margin: 0 auto;
+}
+
+
+#saveChangesBtn {
+  margin-top: 15px;
+  padding: 10px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}

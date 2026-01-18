@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Book Club</title>
+
+
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <h1 id = "MainTitle">The Book Club</h1>
+
+    <div id="error"></div>
+
+    <div class = "nextMemberInfo">
+      <h3 id="nextMemberLabel"> Next Member: <span id="nextMemberValue"></span></h3>
+      <h3 id="nextBookLabel"> Next Book: <span id="nextBookValue"></span></h3>
+    </div>
+
+    <div class = "bookImage">
+      <img src = "BookPictures/B001.jpg" alt = "Book Image">   <!--image of the book-->
+    </div>
+
+    <div class="book-info">                                    <!--book information-->
+      <h3 id="bookTitleLabel"> Book Title: <span id="bookTitleValue"></span></h3>
+      <h3 id="bookAuthorLabel"> Author: <span id="bookAuthorValue"></span></h3>
+      <h3 id="bookSuggestionMemberLabel"> Member: <span id="bookSuggestionMemberValue"></span></h3>
+    </div>
+
+    <div class="checkpointInfo">                               <!--checkpoint information-->
+      <h3 id="checkpointLabel"> Checkpoint: <span id="checkpointValue"></span></h3>
+      <h3 id="chaptersLabel">
+        Chapters:
+        <span id="chaptersValue1"></span>
+        <span class="dash">–</span>
+        <span id="chaptersValue2"></span>
+      </h3>
+      <h3 id="dueLabel"> Due: <span id="dueValue"></span></h3>
+    </div>
+
+    <section id="memberStatusSection">
+
+      <table id="memberStatusTable">
+        <thead>
+          <tr>
+            <th>Member</th>
+            <th>Status</th>
+            <th>Date Completed</th>
+          </tr>
+        </thead>
+
+        <tbody id="memberStatusBody">
+          <!-- JS will inject rows here -->
+        </tbody>
+      </table>
+    </section>
+
+
+    <p>
+      <button id="saveChangesBtn">Save Changes</button>
+      <div id="saveMessage" style="margin-top:8px;"></div>
+    </p>
+
+    <script src = 'script.js'></script>
+  </body>
+</html>
+
