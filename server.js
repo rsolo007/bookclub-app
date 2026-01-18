@@ -6,9 +6,10 @@ app.use(express.json());
 
 // --- Google auth + Sheets client ---
 const auth = new google.auth.GoogleAuth({
-  keyFile: "credentials.json",
+  credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS),
   scopes: ["https://www.googleapis.com/auth/spreadsheets"]
 });
+
 
 const sheets = google.sheets({ version: "v4", auth });
 
@@ -188,5 +189,7 @@ app.post("/checkpoint-status/save", async (req, res) => {
 
 
 // --- Start server ---
-app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 
