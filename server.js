@@ -7,9 +7,16 @@ const app = express();
 app.use(express.json());
 
 // ---- Google credentials ----
-const credsRaw =
-  process.env.GOOGLE_CREDENTIALS ||
-  fs.readFileSync(path.join(__dirname, "credentials.json"), "utf8");
+const credsRaw = process.env.GOOGLE_CREDENTIALS;
+if (!credsRaw) {
+  // local fallback only
+  if (fs.existsSync(path.join(__dirname, "credentials.json"))) {
+    credsRaw = fs.readFileSync(path.join(__dirname, "credentials.json"), "utf8");
+  } else {
+    throw new Error("Missing GOOGLE_CREDENTIALS env var (and no local credentials.json found).");
+  }
+}
+
 
 const auth = new google.auth.GoogleAuth({
   credentials: JSON.parse(credsRaw),
@@ -43,7 +50,11 @@ async function readTab(tab) {
 
 // ---- API ROUTES ----
 app.get("/api/dashboard", async (_, res) => {
-  res.json(rowsToObjects(await readTab("Dashboard")));
+  try {
+    res.json(rowsToObjects(await readTab("Dashboard")));
+  } catch (e) {
+    res.status(500).json({ error: String(e.message || e) });
+  }
 });
 
 app.get("/api/members", async (_, res) => {
