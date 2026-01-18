@@ -53,7 +53,7 @@ async function readTab(tabName) {
 }
 
 // --- Routes (API endpoints) ---
-app.get("/books", async (req, res) => {
+app.get("/api/books", async (req, res) => {
   try {
     const values = await readTab("Books");
     res.json(rowsToObjects(values));
@@ -62,7 +62,7 @@ app.get("/books", async (req, res) => {
   }
 });
 
-app.get("/members", async (req, res) => {
+app.get("/api/members", async (req, res) => {
   try {
     const values = await readTab("Members");
     res.json(rowsToObjects(values));
@@ -71,7 +71,7 @@ app.get("/members", async (req, res) => {
   }
 });
 
-app.get("/checkpoints", async (req, res) => {
+app.get("/api/checkpoints", async (req, res) => {
   try {
     const values = await readTab("Checkpoints");
     res.json(rowsToObjects(values));
@@ -80,7 +80,7 @@ app.get("/checkpoints", async (req, res) => {
   }
 });
 
-app.get("/checkpoint-status", async (req, res) => {
+app.get("/api/checkpoint-status", async (req, res) => {
   try {
     const values = await readTab("CheckpointStatus");
     res.json(rowsToObjects(values));
@@ -89,7 +89,7 @@ app.get("/checkpoint-status", async (req, res) => {
   }
 });
 
-app.get("/dashboard", async (req, res) => {
+app.get("/api/dashboard", async (req, res) => {
   try {
     const values = await readTab("Dashboard");
     res.json(rowsToObjects(values));
@@ -99,7 +99,7 @@ app.get("/dashboard", async (req, res) => {
 });
 
 //                                          --- Saving button flow ---
-app.post("/checkpoint-status/save", async (req, res) => {
+app.post("/api/checkpoint-status/save", async (req, res) => {
   try {
     const { checkpointId, updates } = req.body;
 
