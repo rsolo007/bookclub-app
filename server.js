@@ -1,14 +1,22 @@
 const express = require("express");
 const { google } = require("googleapis");
+const fs = require("fs");
+const path = require("path");
+
 
 const app = express();
 app.use(express.json());
 
 // --- Google auth + Sheets client ---
+const credsRaw =
+  process.env.GOOGLE_CREDENTIALS ||
+  fs.readFileSync(path.join(__dirname, "credentials.json"), "utf8");
+
 const auth = new google.auth.GoogleAuth({
-  credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS),
-  scopes: ["https://www.googleapis.com/auth/spreadsheets"]
+  credentials: JSON.parse(credsRaw),
+  scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
+
 
 
 const sheets = google.sheets({ version: "v4", auth });
