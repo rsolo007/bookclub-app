@@ -26,7 +26,7 @@
       // Load Dashboard ONCE and fill the top section
       async function loadDashboard() {
         try {
-          const res = await fetch("/dashboard");
+          const res = await fetch("/api/dashboard");
           if (!res.ok) throw new Error(await res.text());
           dashboardData = await res.json();
 
@@ -66,7 +66,7 @@ async function loadMemberStatusTable() {
   try {
     // Ensure dashboard is loaded (so we can get current checkpoint)
     if (dashboardData.length === 0) {
-      const res = await fetch("/dashboard");
+      const res = await fetch("/api/dashboard");
       if (!res.ok) throw new Error(await res.text());
       dashboardData = await res.json();
       //console.log(JSON.stringify(dashboardData));
@@ -86,8 +86,8 @@ async function loadMemberStatusTable() {
 
     // Load members (memberRes) + checkpoint status (csRes)
     const [membersRes, csRes] = await Promise.all([
-      fetch("/members"),
-      fetch("/checkpoint-status")
+      fetch("/api/members"),
+      fetch("/api/checkpoint-status")
     ]);
     console.log(JSON.stringify(membersRes))
 
@@ -203,7 +203,7 @@ async function saveCheckpointStatuses() {
       return { memberId, completionStatus, updatedDate };
     });
 
-    const res = await fetch("/checkpoint-status/save", {
+    const res = await fetch("/api/checkpoint-status/save", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

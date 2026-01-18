@@ -13,7 +13,8 @@ const auth = new google.auth.GoogleAuth({
 
 const sheets = google.sheets({ version: "v4", auth });
 
-const SPREADSHEET_ID = "1-5nqy0T_Fru8oYhBEmNInCvRe7DOsFzzZ7Y8SVlGjG4";
+const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
+
 
 // --- Serve your HTML files in this folder (index.html) ---
 app.use(express.static(__dirname));
@@ -189,11 +190,12 @@ app.post("/checkpoint-status/save", async (req, res) => {
 
 
 // --- Start server ---
-module.exports = app;
-
 if (require.main === module) {
   app.listen(3000, () => console.log("Server running on http://localhost:3000"));
 }
+
+module.exports = app;
+
 
 
 
